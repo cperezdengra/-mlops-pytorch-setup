@@ -17,3 +17,4 @@ pip install -r requirements.txt
 python model/train.py
 python validate/validate.py
 ./run_every_10h.sh
+# trigger
