@@ -26,7 +26,7 @@ def main():
             correct += pred.eq(target).sum().item()
             total += target.size(0)
 
-    print(f"📊 Accuracy: {correct / total * 100:.2f}%")
+    print(f"Accuracy: {correct / total * 100:.2f}%")
 
 if __name__ == "__main__":
     main()

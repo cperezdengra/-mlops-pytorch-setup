@@ -31,10 +31,18 @@ def main():
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
-        print(f"Epoch {epoch+1} – Loss: {running_loss/len(train_loader):.4f}")
+
+        avg_loss = running_loss / len(train_loader)
+        print(f"Epoch {epoch+1} – Loss: {avg_loss:.4f}")
+
+        # Guardar el loss de la segunda epoch para comprobarlo en CI
+        if epoch == 1:
+            with open("second_epoch_loss.txt", "w") as f:
+                f.write(f"{avg_loss:.4f}")
+        #print(f"Epoch {epoch+1} – Loss: {running_loss/len(train_loader):.4f}")
 
     torch.save(model.state_dict(), "model.pth")
-    print("✅ Entrenamiento completado y modelo guardado.")
+    print("Entrenamiento completado y modelo guardado.")
 
 if __name__ == "__main__":
     main()
